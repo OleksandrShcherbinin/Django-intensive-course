@@ -1,4 +1,4 @@
-/media/images/*
-/django_cache/*
-/logging/*
+/media/
+/logging/.gitkeep
+/django_cache/.gitkeep
 /desktop.ini

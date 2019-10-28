@@ -1,0 +1,53 @@
+{% load cache %}
+{% cache 3600 slider %}
+{% load static %}
+<div class="slider-section section">
+    <div class="slider-wrapper">
+        <div class="slider-slide" data-bg="{% static 'images/hero-bg.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-9">
+                        <div class="slide-content">
+                            <div class="slide-content-inner">
+                                <h2>STYLISH & FASHIONABLE</h2>
+                                <p>Produce and supply various Handicraft items all over
+                                    the world which were very attractive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-slide" data-bg="{% static 'images/hero-2.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-9">
+                        <div class="slide-content">
+                            <div class="slide-content-inner">
+                                <h2>TRENDY AND HOT</h2>
+                                <p>Produce and supply various Handicraft items all over
+                                    the world which were very attractive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slider-slide" data-bg="{% static 'images/hero-3.jpg' %}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-9">
+                        <div class="slide-content">
+                            <div class="slide-content-inner">
+                                <h2>FASHIONABLE & STYLISH</h2>
+                                <p>Handicraft and supply various items all over
+                                    the world which were very attractive</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcache %}

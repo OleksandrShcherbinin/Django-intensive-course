@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{% block main %}
+<!-- Slider Section Start -->
+{% include 'slider.html' %}
+<!-- Slider Section End -->
+{% load cache %}
+{% cache 3600 home %}
+    <div class="product-section section bg-gray pt-100 pb-70 pt-xs-70 pb-xs-40">
+        <div class="container">
+            <div class="row">
+                <div class="section-title text-center col mb-80 mb-xs-50">
+                    <h1>New Products</h1>
+                </div>
+            </div>
+            <div class="row">
+                {% for item in fashion %}
+                <div class="col-lg-3 col-md-6 col-12 mb-30">
+                    <div class="product-item bg-white">
+                        <div class="product-inner">
+                            <div class="image-wrap">
+                                <a href="{% url 'product' item.slug %}" class="image"><img
+                                        src="{{ item.img.url }}" alt=""></a>
+                            </div>
+                            <div class="content text-center">
+                                <h4 class="title"><a href="{% url 'product' item.slug %}">{{ item.name  | truncatewords_html:4}}</a></h4>
+                                <div class="price">
+                                    <span class="price-sale"><big>{{ item.price }}</big></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endcache %}
+{% include 'banner.html' %}
+<!-- Call to action Section Start -->
+{% include 'call_action.html' %}
+<!-- Call to action Section End -->
+
+{% endblock main %}
+
+

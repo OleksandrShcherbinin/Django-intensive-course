@@ -1,0 +1,48 @@
+{% load static %}
+{% load cache %}
+{% cache 3600 call_action %}
+    <div class="call-to-action section mb-100 mb-xs-70">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="call-to-action-item mt-0">
+                        <div class="call-to-action-item__icon">
+                            <img src="{% static 'images/icons/fast-delivery.png' %}" alt="fast delivery">
+                        </div>
+                        <div class="call-to-action-item__info">
+                            <h3>Free Home Delivery</h3>
+                            <p>Provide free home delivery
+                                for all product over $100</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="call-to-action-item">
+                        <div class="call-to-action-item__icon">
+                            <img src="{% static 'images/icons/quality.png' %}" alt="quality">
+                        </div>
+                        <div class="call-to-action-item__info">
+                            <h3>Quality Products</h3>
+                            <p>We ensure our product
+                                quality all times</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="call-to-action-item">
+                        <div class="call-to-action-item__icon">
+                            <img src="{% static 'images/icons/return.png' %}" alt="return">
+                        </div>
+                        <div class="call-to-action-item__info">
+                            <h3>3 Day Return</h3>
+                            <p>Our product return policy
+                                is very easy & simple</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endcache %}

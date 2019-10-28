@@ -1,0 +1,4 @@
+/media/images/*
+/django_cache/*
+/logging/*
+/desktop.ini

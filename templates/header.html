@@ -1,0 +1,56 @@
+{% load cache %}
+{% cache 3600 header %}
+{% load static %}
+<header class="header-section section position-static">
+    <div class="container-fluid p-0">
+        <div class="row no-gutters align-items-center">
+            <div class="col-4 col-lg-2 col-xl-3">
+                <!-- Logo Start -->
+                <div class="header-logo header-logo-one mt-0">
+                    <a href="{% url 'home' %}">
+                        <img src="{% static 'images/logo.png' %}" alt="Olson">
+                    </a>
+                </div><!-- Logo End -->
+            </div>
+            <div class="col col-lg-7 col-xl-6 d-none d-lg-block">
+                <div class="main-menu mr-lg-100">
+                    <nav>
+                        <ul>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li class="menu-item-has-children"><a href="#">CHOOSE BY MOST POPULAR CATEGORIES</a>
+                                <ul class="sub-menu">
+                                    {% for category in categories %}
+                                    <li><a href="{% url 'catalogue' category.slug %}">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-8 col-lg-3 col-xl-3">
+                <div class="header-shop-links">
+                    <div class="shop-links-item header-search">
+                        <a href="javascript:void(0)" class="btn-src"><img src="{% static 'images/icons/search.png' %}"
+                                                                          alt="Search"></a>
+                        <a href="javascript:void(0)" class="btn-close"><img src="{% static 'images/icons/close.png' %}"
+                                                                            alt="Close"></a>
+                        <div class="search-content-wrap">
+                            <label for="search" class="sr-only">Search</label>
+                                <form action="{% url 'search' %}">
+                                <input type="text" name="q" id="search" placeholder="Search fashion catalogue here"/>
+                                </form>
+                        </div>
+                    </div>
+                    <div class="shop-links-item header-account mr-lg-0">
+                        <a href="{% url 'home' %}"><img src="{% static 'images/icons/user.png' %}" alt="#"></a>
+                    </div>
+                    <div class="shop-links-item header-menu-icon d-lg-none">
+                        <a href="javascript:void(0)" class="menu-toggle"><span class="bar"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endcache %}

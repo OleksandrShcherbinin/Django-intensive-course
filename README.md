@@ -1,2 +1,2 @@
 # Django-intensive-course
-My first Django website was made at Django course intensive
+My first ever Django try. Website(fashion catalogue) was made at Django course intensive

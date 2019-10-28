@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<div class="side-menu-wrap">
+    <button class="side-menu-close"><span></span></button>
+    <div class="side-menu-inner">
+        <div class="side-logo"><a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a></div>
+        <div class="side-menu nice-scroll">
+            <nav>
+                <ul>
+                    <li class="menu-item-has-children"><a href="{% url 'home' %}">Home</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'home' %}">Home One</a></li>
+                            <li><a href="index-2.html">Home Two</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Shop</a>
+                        <ul class="sub-menu">
+                            <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
+                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                            <li><a href="shop-full-width.html">Shop Full Width</a></li>
+                            <li><a href="single-product.html">Single Product</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="shop-left-sidebar.html#">Pages</a>
+                        <ul class="sub-menu">
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="{% url 'home' %}">Login Register</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children"><a href="blog-left-sidebar.html">Blog</a>
+                        <ul class="sub-menu">
+                            <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                            <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                            <li><a href="blog-full-width.html">Blog Full Width</a></li>
+                            <li><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
+                            <li><a href="single-blog-right-sidebar.html">Single Blog Right Sidebar</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="side-social">
+            <a href="shop-left-sidebar.html#"><i class="fa fa-facebook"></i></a>
+            <a href="shop-left-sidebar.html#"><i class="fa fa-twitter"></i></a>
+            <a href="shop-left-sidebar.html#"><i class="fa fa-pinterest"></i></a>
+            <a href="shop-left-sidebar.html#"><i class="fa fa-instagram"></i></a>
+            <a href="shop-left-sidebar.html#"><i class="fa fa-google-plus"></i></a>
+        </div>
+    </div>
+</div>
+
+<div class="side-menu-overlay"></div>
+
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="page-banner-content text-center col">
+                <h1>CATEGORY   -   {{ object.name }}</h1>
+                <ul class="breadcrumb justify-content-center">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Product Section Start -->
+<div class="product-section section bg-white mt-100 mb-60 mt-xs-70 mb-xs-30">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-12 order-1 order-lg-2 mb-40">
+                <div class="row">
+                    {% for item in fashionitem_list %}
+                    <div class="col-xl-4 col-md-6 col-12 mb-30">
+                        <div class="product-item bg-gray">
+                            <div class="product-inner">
+                                <div class="image-wrap">
+                                    <a href="{% url 'product' item.slug %}" class="image"><img
+                                            src="{{ item.img.url }}" alt=""></a>
+                                </div>
+                                <div class="content text-center">
+                                    <h4 class="title"><a href="{% url 'product' item.slug %}">{{ item.name }}</a></h4>
+                                    <div class="price">
+                                        <span class="price-sale">{{ item.price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% include 'paginator.html' %}
+            </div>
+            <div class="col-lg-3 col-12 order-2 order-lg-1">
+                <div class="sidebar">
+                    <h3 class="title">CHOOSE BY COLOR</h3>
+                    <ul class="sidebar-list">
+                        {% for color in colors %}
+                            <li><a href="?color={{color}}">{{ color.name | upper}} </a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% load cache %}
+                {% cache 3600 popular_products %}
+                <div class="sidebar">
+                    <h3 class="title">Popular Product</h3>
+                    {% for item in pop_fashion %}
+                    <div class="sidebar-product-wrap">
+
+                        <div class="sidebar-product">
+                            <a href="{% url 'product' item.slug %}" class="image"><img
+                                    src="{{ item.img.url }}" alt=""></a>
+                            <div class="content">
+                                <a href="{% url 'product' item.slug %}" class="title">{{ item.name}}r</a>
+                                <span class="price">{{ item.price }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endcache %}
+                {% cache 3600 tags %}
+                <div class="sidebar">
+                    <h3 class="title">Tags</h3>
+                    <ul class="sidebar-tag">
+                        {% for cat in cat_small %}
+                        <li><a href="{% url 'catalogue' cat.slug %}">{{cat.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endcache %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Section End -->
+{% endblock main %}

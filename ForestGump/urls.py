@@ -1,0 +1,23 @@
+from django.contrib import admin
+from django.urls import path, include
+from fashion_catalogue import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.decorators.cache import cache_page
+
+urlpatterns = [
+    path('', cache_page(3600)(views.IndexView.as_view()), name='home'),
+    path('catalogue/<slug:slug>', views.CatalogueView.as_view(), name='catalogue'),
+    path('search/', views.SearchView.as_view(), name='search'),
+    path('product/<slug:slug>', cache_page(3600)(views.ProductView.as_view()), name='product'),
+    path('admin/', admin.site.urls),
+    path('summernote/', include('django_summernote.urls')),
+    path('robots.txt', views.robots_view)
+
+]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [path('__debug__/', include(debug_toolbar.urls))]
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

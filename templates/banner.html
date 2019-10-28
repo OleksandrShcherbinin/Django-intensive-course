@@ -1,0 +1,17 @@
+{% load cache %}
+{% cache 3600 banner %}
+{% load static %}
+<div class="banner-section section mt-100 mb-80 mt-xs-70 mb-xs-50">
+    <div class="container-fluid p-0">
+        <div class="row">
+            {% for banner in banners %}
+            <div class="col-md-4 col-12 mb-20">
+                <div class="banner"><a href="#"><img src="{% static banner %}"
+                                                                         alt="Banner"></a></div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endcache %}
+

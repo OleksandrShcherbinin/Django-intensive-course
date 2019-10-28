@@ -1,0 +1,128 @@
+{%  load static %}
+
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Olson - eCommerce Bootstrap4 </title>
+    <meta name="robots" content="noindex, follow"/>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins.css' %}">
+
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{% static 'css/helper.css' %}">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Modernizer JS -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+</head>
+
+<body>
+
+<div class="site-wrapper boxed-layout pt-0">
+    <!-- Header Section Start -->
+    {% include 'header.html' %}
+    <!-- Header Section End -->
+    <div class="side-menu-wrap">
+        <button class="side-menu-close"><span></span></button>
+        <div class="side-menu-inner">
+
+            <div class="side-logo"><a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a></div>
+
+            <div class="side-menu nice-scroll">
+                <nav>
+                    <ul>
+                        <li class="menu-item-has-children"><a href="{% url 'home' %}">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'home' %}">Home One</a></li>
+                                <li><a href="index-2.html">Home Two</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children"><a href="shop-left-sidebar.html">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="shop-left-sidebar.html">Shop Left Sidebar</a></li>
+                                <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                                <li><a href="shop-full-width.html">Shop Full Width</a></li>
+                                <li><a href="single-product.html">Single Product</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children"><a href="{% url 'home' %}#">Pages</a>
+                            <ul class="sub-menu">
+                                <li><a href="cart.html">Cart</a></li>
+                                <li><a href="checkout.html">Checkout</a></li>
+                                <li><a href="{% url 'home' %}">Login Register</a></li>
+                                <li><a href="wishlist.html">Wishlist</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children"><a href="blog-left-sidebar.html">Blog</a>
+                            <ul class="sub-menu">
+                                <li><a href="blog-left-sidebar.html">Blog Left Sidebar</a></li>
+                                <li><a href="blog-right-sidebar.html">Blog Right Sidebar</a></li>
+                                <li><a href="blog-full-width.html">Blog Full Width</a></li>
+                                <li><a href="single-blog-left-sidebar.html">Single Blog Left Sidebar</a></li>
+                                <li><a href="single-blog-right-sidebar.html">Single Blog Right Sidebar</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="side-social">
+                <a href="{% url 'home' %}#"><i class="fa fa-facebook"></i></a>
+                <a href="{% url 'home' %}#"><i class="fa fa-twitter"></i></a>
+                <a href="{% url 'home' %}#"><i class="fa fa-pinterest"></i></a>
+                <a href="{% url 'home' %}#"><i class="fa fa-instagram"></i></a>
+                <a href="{% url 'home' %}#"><i class="fa fa-google-plus"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="side-menu-overlay"></div>
+
+    <!-- Product Section Start -->
+    {% block main %} {% endblock main %}
+    <!-- Product Section End -->
+    <!-- Start Footer Section -->
+    {% include 'footer.html' %}
+    <!-- End Footer Section -->
+
+</div>
+
+<!-- JS
+============================================ -->
+
+<!-- jQuery JS -->
+<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+<!-- Popper JS -->
+<script src="{% static 'js/popper.min.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- Plugins JS -->
+<script src="{% static 'js/plugins.js' %}"></script>
+<!-- Ajax Mail -->
+<script src="{% static 'js/ajax-mail.js' %}"></script>
+<!-- Main JS -->
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

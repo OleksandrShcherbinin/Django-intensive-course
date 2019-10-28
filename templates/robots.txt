@@ -1,0 +1,20 @@
+User-agent: *
+Disallow: */order-a-gift-card$
+Disallow: */my-account*
+Disallow: */cart$
+Disallow: */cart/*
+Disallow: */emailAFriendUrl$
+Disallow: /blog/tag/*
+Disallow: */search*
+Disallow: */quick-order*
+Disallow: */o/*
+Disallow: /suggest/?*
+Disallow: /*q=*
+Disallow: /*sort=newness*
+Disallow: /*sort=rating*
+Disallow: /*sort=price-desc*
+Disallow: /*sort=price-asc*
+Sitemap:
+Sitemap:
+Sitemap:
+User-Agent: AdsBot-Google

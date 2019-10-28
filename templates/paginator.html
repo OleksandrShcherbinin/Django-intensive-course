@@ -1,0 +1,27 @@
+{% load static %}
+{% if is_paginated %}
+<div class="page-pagination mt-20">
+    <ul>
+        <li><a href="?page=1{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}"><i class="fa fa-angle-left"></i></a></li>
+        {% if page_object.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q}}{{% endif %}"><i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+            {% if forloop.counter|add:5 > page_obj.number and forloop.counter < page_obj.number|add:5 %}
+                {% if page_obj.number == i %}
+                    <li class="active"><a> {{ i }}</a></li>
+
+                {% else %}
+                    <li class="active"><a href="?page={{i}}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}">{{ i }}</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% if paginator.has_next %}
+            <li><a href="?page={{page_object.next_page_number}}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}"><i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
+
+        <li><a href="?page={{paginator.num_pages}}{% if request.GET.q %}&q={{ request.GET.q}}{% endif %}"><i class="fa fa-angle-right"></i></a></li>
+
+    </ul>
+</div>
+{% endif %}

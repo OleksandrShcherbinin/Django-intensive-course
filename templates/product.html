@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main %}
+<!-- Page Banner Section Start -->
+<div class="page-banner-section section bg-gray">
+    <div class="container">
+        <div class="row">
+            <div class="page-banner-content text-center col">
+                <h1>Single Product</h1>
+                <ul class="breadcrumb justify-content-center">
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'product' product.slug %}">{{ product.name }}</a></li>
+                </ul>
+                {% if messages %}
+                <div class="alert alert-success" role="alert">
+                   {% for message in messages %}
+                   <p>{{ message }}</p>
+                   {% endfor %}
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Banner Section End -->
+
+<!-- Page Section Start -->
+<div class="page-section section mt-100 mb-100 mt-xs-70 mb-xs-70">
+    <div class="container">
+        <div class="row mb-20">
+            <!-- Single Product Images -->
+            <div class="col-lg-5 col-md-6 col-12 mb-40">
+                <!-- Tab panes -->
+                <div class="pro-large-img mb-10 fix">
+                    <img src="{{ product.img.url }}" alt=""/>
+                </div>
+                {% load cache %}
+                {% cache 3600 single_product_thumnail %}
+                <!-- Single Product Thumbnail Slider -->
+                <p>Try Also these awesome products</p>
+                <ul id="pro-thumb-img" class="pro-thumb-img">
+                    <li><a href="{% url 'product' product.slug %}" data-image="{% static 'images/product/product-1.png' %}"
+                           ><img src="{{ product.img.url }}"
+                                                                                           alt=""/></a></li>
+                    {% for pic in pics %}
+                    <li><a href="{% url 'product' pic.slug %}" data-image=""
+                           data-zoom-image=""><img
+                            src="{{ pic.img.url }}" alt=""/></a></li>
+                    {% endfor%}
+                </ul>
+                {% endcache %}
+            </div>
+            <!-- Single Product Details -->
+            <div class="col-lg-7 col-md-6 col-12 mb-40">
+                <div class="product-details section">
+                    <!-- Title -->
+                    <h1 class="title">{{ product.name }}</h1>
+                    <!-- Price Ratting -->
+                    <div class="price-ratting section">
+                        <!-- Price -->
+                        <span class="price float-left"><span class="new">{{ product.price }}</span></span>
+                        <!-- Ratting -->
+                        {% if reviews %}
+                            <span class="ratting float-right">
+
+                            <span> ({{ reviews.count }} Customer Review)</span>
+                        </span>
+                        {% endif %}
+                    </div>
+                    <!-- Short Description -->
+                    <div class="short-desc section">
+                        <h5 class="pd-sub-title">Detail Description</h5>
+                        <p>{{ product.description | safe }}</p>
+                    </div>
+                    <!-- Product Size -->
+                    <div class="product-size section">
+                        <h5 class="pd-sub-title">Available Sizes</h5>
+                        <button>XS</button>
+                        <button>S</button>
+                        <button class="active">M</button>
+                        <button>L</button>
+                        <button>XL</button>
+                    </div>
+                    <!-- Product Color -->
+                    <div class="color-list section">
+                        <h5 class="pd-sub-title">COLOR:     {{ color | upper }}</h5>
+
+                    </div>
+                    <!-- Quantity Cart -->
+
+                    <!-- Share -->
+                    <div class="share-icons section">
+                        <span>share :</span>
+                        <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/?lang=en"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/?hl=en"><i class="fa fa-instagram"></i></a>
+                        <a href="https://www.pinterest.com/"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Nav tabs -->
+            <div class="col-12">
+                <ul class="pro-info-tab-list section nav">
+                    <li><a data-toggle="tab">Reviews  {{ reviews.count }}</a></li>
+                </ul>
+            </div>
+            <div class="contact-form mb-50"><h4>Rate product & Leave your review here:</h4>
+                <!-- Ratting -->
+                <form action="{% url 'product' object.slug %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+
+                <!--
+                    <label class="radio-inline">
+                        <input type="radio" name="rating" class="fa fa-star" value="1" checked>Rate 1
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rating" class="fa fa-star" value="2">Rate 2
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rating" class="fa fa-star" value="3">Rate 3
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rating" class="fa fa-star" value="4">Rate 4
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="rating" class="fa fa-star" value="5">Rate 5
+                    </label>
+
+                    <div class="row row-10">
+                        <div class="col-md-6 col-12 mb-20">
+                            <input type="text" id="name" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="col-md-6 col-12 mb-20">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="col-12 mb-20">
+                            <textarea name="comment" placeholder="Message" id="message" required></textarea>
+                        </div>-->
+                        <div class="col-12">
+                            <input type="submit" value="Send Message">
+                        </div>
+                </form>
+                <p class="form-messege"></p>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content col-12">
+                <div class="pro-info-tab tab-pane active" id="more-info">
+                    {% if reviews %}
+                        {% for review in reviews %}
+                            <span class="ratting float-right">
+                                {% for i in "x"|ljust:review.rating %}
+                                    {% if review.rating > i %}
+                                        <i class="fa fa-star"></i>
+                                    {% else %}
+                                        <i class="fa fa-star"></i>
+                                    {% endif %}
+                                {% endfor %}
+                                <span> Customer Rating</span>
+                            </span>
+                        <p>{{ review.name }}</p>
+                        <p>{{ review.published }}</p>
+                        <p>{{ review.comment | safe }}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Section End -->
+{% endblock main %}
